@@ -1,0 +1,7 @@
+table,filename,source_system,business_unit,data_owner,data_steward,data_classification,column,column_data_classification,data_type,rule,rule_query,rule_description,rule_dimension,total_records,violations
+person,persons.csv,Microsoft Dynamics CRM,Sales,John Doe,Jane Doe,PII,postal_code,PII,string,not_null,df[column].notnull(),Value is null.,Completeness,1000,57
+person,persons.csv,Microsoft Dynamics CRM,Sales,John Doe,Jane Doe,PII,country,Internal,string,not_null,df[column].notnull(),Value is null.,Completeness,1000,76
+person,persons.csv,Microsoft Dynamics CRM,Sales,John Doe,Jane Doe,PII,country,Internal,string,unique,~df[column].duplicated(keep=False),Value has exact duplicates.,Uniqueness,1000,969
+person,persons.csv,Microsoft Dynamics CRM,Sales,John Doe,Jane Doe,PII,ssn,PII,string,not_null,df[column].notnull(),Value is null.,Completeness,1000,247
+person,persons.csv,Microsoft Dynamics CRM,Sales,John Doe,Jane Doe,PII,ssn,PII,string,unique,~df[column].duplicated(keep=False),Value has exact duplicates.,Uniqueness,1000,491
+person,persons.csv,Microsoft Dynamics CRM,Sales,John Doe,Jane Doe,PII,credit_card_expire,PCI,string,not_null,df[column].notnull(),Value is null.,Completeness,1000,63
