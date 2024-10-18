@@ -5,16 +5,18 @@ import sys
 import pandas as pd
 
 # Local application/library specific imports
-from profiler.config import OUTPUT_PATH, setup_logging
-from profiler.engine import run_engine
-from profiler.utils import remove_dir
+from profiler.config import OUTPUT_PATH, SCHEMAS_PATH, setup_logging
+from profiler.engine import run_engine, load_rules
+from profiler.utils import remove_dir, glob_files
 
 
 def main():
     logger = setup_logging()
     logger.info("Starting data quality engine")
+    rules = load_rules()
+    schemas = glob_files(SCHEMAS_PATH, "yaml")
     try:
-        data_quality_report = run_engine()
+        data_quality_report = run_engine(rules, schemas)
     except FileNotFoundError as e:
         logger.error(f"Attempted to read a file that does not exist: {e}")
         sys.exit(1)

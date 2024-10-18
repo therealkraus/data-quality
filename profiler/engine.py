@@ -5,7 +5,7 @@ from pathlib import Path
 import pandas as pd
 
 # Local application/library specific imports
-from profiler.config import RULES_PATH, SCHEMAS_PATH, DATA_PATH
+from profiler.config import RULES_PATH, DATA_PATH
 from profiler.utils import glob_files, open_yaml
 
 
@@ -56,9 +56,13 @@ def apply_rule(df, column, rule):
     return eval(rule)
 
 
-def run_engine():
+def run_engine(rules: dict, schemas: list) -> list:
     """
     Run the data quality engine.
+
+    Args:
+        rules (dict): A dictionary containing the rules.
+        schemas (list): A list of schema files.
 
     Returns:
         list: A list of dictionaries containing the data quality report.
@@ -84,8 +88,6 @@ def run_engine():
                 "violations": 10
             }
     """
-    rules = load_rules()
-    schemas = glob_files(SCHEMAS_PATH, "yaml")
     data_quality_report = []
     for schema in schemas:
         schema_content = open_yaml(schema)
