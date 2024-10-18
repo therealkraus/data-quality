@@ -1,0 +1,4 @@
+name: unique
+query: ~df[column].duplicated(keep=False)
+error_message: "Value has exact duplicates."
+dimension: "Uniqueness"

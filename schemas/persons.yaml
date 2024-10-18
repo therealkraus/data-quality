@@ -30,6 +30,9 @@ tables:
       - name: country
         data_type: string
         data_classification: Internal
+        rules:
+          - name: not_null
+          - name: unique
       - name: email
         data_type: string
         data_classification: PII
