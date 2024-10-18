@@ -1,0 +1,4 @@
+name: not_null
+query: df[column].notnull()
+error_message: "Value is null."
+dimension: "Completeness"
