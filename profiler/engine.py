@@ -5,7 +5,7 @@ from pathlib import Path
 import pandas as pd
 
 # Local application/library specific imports
-from profiler.config import RULES_PATH, DATA_PATH
+from profiler.config import RULES_PATH
 from profiler.utils import glob_files, open_yaml
 
 
@@ -56,7 +56,7 @@ def apply_rule(df, column, rule):
     return eval(rule)
 
 
-def run_engine(rules: dict, schemas: list) -> list:
+def run_engine(rules: dict, schemas: list, data_path) -> list:
     """
     Run the data quality engine.
 
@@ -116,7 +116,7 @@ def run_engine(rules: dict, schemas: list) -> list:
                         continue
 
                     rule_query = rule.get("query")
-                    data = pd.read_csv(f"{DATA_PATH}{table.get('filename')}")
+                    data = pd.read_csv(f"{data_path}{table.get('filename')}")
                     result = apply_rule(data, column_name, rule_query)
                     total_records = len(data)
                     violations = int(

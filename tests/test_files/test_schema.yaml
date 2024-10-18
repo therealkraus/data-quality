@@ -1,0 +1,67 @@
+tables:
+  - name: person
+    filename: "test_data.csv"
+    source_system: Microsoft Dynamics CRM
+    business_unit: Sales
+    data_owner: John Doe
+    data_steward: Jane Doe
+    data_classification: PII
+    columns:
+      - name: first_name
+        data_type: string
+        data_classification: PII
+      - name: last_name
+        data_type: string
+        data_classification: PII
+      - name: street_address
+        data_type: string
+        data_classification: PII
+      - name: city
+        data_type: string
+        data_classification: Internal
+      - name: province
+        data_type: string
+        data_classification: Internal
+      - name: postal_code
+        data_type: string
+        data_classification: PII
+        rules:
+          - name: not_null
+      - name: country
+        data_type: string
+        data_classification: Internal
+        rules:
+          - name: not_null
+          - name: unique
+      - name: email
+        data_type: string
+        data_classification: PII
+      - name: phone_number
+        data_type: string
+        data_classification: PII
+      - name: job
+        data_type: string
+        data_classification: Internal
+      - name: ssn
+        data_type: string
+        data_classification: PII
+        rules:
+          - name: not_null
+          - name: unique
+      - name: company
+        data_type: string
+        data_classification: Internal
+      - name: credit_card_number
+        data_type: string
+        data_classification: PCI
+      - name: credit_card_provider
+        data_type: string
+        data_classification: PCI
+      - name: credit_card_expire
+        data_type: string
+        data_classification: PCI
+        rules:
+          - name: not_null
+      - name: credit_card_security_code
+        data_type: string
+        data_classification: PCI
